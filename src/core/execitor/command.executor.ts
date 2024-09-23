@@ -1,8 +1,9 @@
 import { ChildProcessWithoutNullStreams } from "child_process";
 import { IStreamLogger } from "../handlers/stream.logger.interface";
+import { ICommandExec } from "./command.type";
 
 export abstract class CommandExeccutor<Input> {
-    constructor(private logger: IStreamLogger) {}
+    constructor(private logger: IStreamLogger) { }
     
     public async execute() {
         const input = await this.prompt()
@@ -12,7 +13,7 @@ export abstract class CommandExeccutor<Input> {
     }
 
     protected abstract prompt(): Promise<Input>
-    protected abstract build(input: Input): any  
+    protected abstract build(input: Input): ICommandExec  
     protected abstract spawn(command: any): ChildProcessWithoutNullStreams;
     protected abstract processStream(stream: ChildProcessWithoutNullStreams, logger: IStreamLogger): void
 

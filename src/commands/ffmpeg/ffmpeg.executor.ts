@@ -2,7 +2,6 @@ import { ChildProcessWithoutNullStreams, spawn } from "child_process";
 import { CommandExeccutor } from "../../core/execitor/command.executor";
 import { IStreamLogger } from "../../core/handlers/stream.logger.interface";
 import { ICommandExecFfmpeg, IFfmpegInput } from "./ffmpeg.types";
-import { ICommandExec } from "../../core/execitor/command.type";
 import { FileService } from "../../core/files/file.service";
 import { PromptService } from "../../core/prompt/prompt.service";
 import { FfmpegBuilder } from "./ffmpeg.builder";
@@ -24,7 +23,7 @@ export class FfmpegExecutor extends CommandExeccutor<IFfmpegInput> {
     }
 
     protected build({ width, height, path, name}: IFfmpegInput): ICommandExecFfmpeg {
-        const output = this.fileService.getFilePAth(path, name, 'mp4');
+        const output = this.fileService.getFilePath(path, name, 'mp4');
         const args = (new FfmpegBuilder)
             .input(path)
             .setVideoSize(width, height)
@@ -32,9 +31,9 @@ export class FfmpegExecutor extends CommandExeccutor<IFfmpegInput> {
         return { command: 'ffmpeg', args, output };
     }
 
-    protected spawn({ output, command, args }: ICommandExecFfmpeg): ChildProcessWithoutNullStreams {
+    protected spawn({ output, command: commmand, args }: ICommandExecFfmpeg): ChildProcessWithoutNullStreams {
         this.fileService.deleteFileIfExists(output);
-        return spawn(command, args)
+        return spawn(commmand, args)
     }
 
     protected processStream(stream: ChildProcessWithoutNullStreams, logger: IStreamLogger): void {

@@ -1,5 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+exports.ConsoleLogger = void 0;
 class ConsoleLogger {
     static getInstance() {
         if (!ConsoleLogger.logger) {
@@ -17,3 +18,4 @@ class ConsoleLogger {
         console.log('finished');
     }
 }
+exports.ConsoleLogger = ConsoleLogger;

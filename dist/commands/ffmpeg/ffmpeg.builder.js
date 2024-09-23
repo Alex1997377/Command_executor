@@ -28,7 +28,3 @@ class FfmpegBuilder {
     }
 }
 exports.FfmpegBuilder = FfmpegBuilder;
-new FfmpegBuilder()
-    .input('sdsd')
-    .setVideoSize(1920, 1080)
-    .output('//');

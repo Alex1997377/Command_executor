@@ -1,6 +1,5 @@
 export class FfmpegBuilder {
     private inputPath: string;
-    private outputPath: string;
     private options: Map<string, string> = new Map()
 
     constructor() {
@@ -31,7 +30,3 @@ export class FfmpegBuilder {
     }
 }
 
-new FfmpegBuilder()
-    .input('sdsd')
-    .setVideoSize(1920, 1080)
-    .output('//')

@@ -10,7 +10,7 @@ export class FileService {
             return false
         }
     }
-    public getFilePAth(path: string, name: string, ext: string) {
+    public getFilePath(path: string, name: string, ext: string) {
         if (!isAbsolute(path)) {
             path = join(__dirname + '/' + path)
         }
